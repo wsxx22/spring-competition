@@ -5,13 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PlayerDTO {
+@NoArgsConstructor
+public class CategoryDTO {
 
     private Long id;
     private String name;
-    private String surname;
-    private int age;
-    private Long teamId;
+
 }

@@ -5,14 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Competition extends AbstractEntityId {
+public class Competition extends AbstractEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Category category;
@@ -20,7 +20,7 @@ public class Competition extends AbstractEntityId {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    private LocalDateTime dateTime;
+    private LocalDate date;
 
 
     @OneToMany(mappedBy = "competition", cascade = CascadeType.ALL)

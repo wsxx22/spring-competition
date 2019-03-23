@@ -1,5 +1,6 @@
 package com.daniel.competitions.controller;
 
+import com.daniel.competitions.dto.AddressDTO;
 import com.daniel.competitions.entity.Address;
 import com.daniel.competitions.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class AddressController {
     }
 
     @GetMapping("/all")
-    public List<Address> findAll () {
+    public List<AddressDTO> findAll () {
         return addressService.findAll();
     }
 

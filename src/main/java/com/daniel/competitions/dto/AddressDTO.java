@@ -1,17 +1,15 @@
-package com.daniel.competitions.entity;
+package com.daniel.competitions.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address extends AbstractEntity {
+public class AddressDTO {
 
+    private Long id;
     private String name;
 
 }

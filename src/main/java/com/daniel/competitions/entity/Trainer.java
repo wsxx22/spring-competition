@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Trainer extends AbstractEntityId {
+public class Trainer extends AbstractEntity {
 
     private String name;
     private String surname;

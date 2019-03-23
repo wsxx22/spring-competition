@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Player extends AbstractEntityId {
+public class Player extends AbstractEntity {
 
     private String name;
     private String surname;
@@ -18,7 +18,7 @@ public class Player extends AbstractEntityId {
     private int age;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_team")
+    @JoinColumn(name = "team_id")
     private Team team;
 
 }

@@ -19,12 +19,12 @@ public class CompetitionTeams implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "id_competition")
+    @JoinColumn(name = "competition_id")
     private Competition competition;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "id_team")
+    @JoinColumn(name = "team_id")
     private Team team;
 
     private int points;

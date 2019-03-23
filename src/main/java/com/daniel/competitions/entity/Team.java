@@ -11,17 +11,17 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Team extends AbstractEntityId {
+public class Team extends AbstractEntity {
 
     private String name;
     private int totalPoints;
 
     @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_trainer")
+    @JoinColumn(name = "trainer_id")
     private Trainer trainer;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "id_team")
-    private List<Player> playerList;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "team_id")
+    private List<Player> players;
 
 }

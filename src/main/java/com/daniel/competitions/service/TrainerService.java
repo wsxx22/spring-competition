@@ -23,6 +23,10 @@ public class TrainerService {
         return convertToDTO(trainerRepository.findAll());
     }
 
+    public Trainer findById(Long id) {
+        return trainerRepository.findById(id).orElseThrow(() -> new RuntimeException("trener o podanym id nie istnieje"));
+    }
+
     private TrainerDTO convertToDTO(Trainer trainer){
         return new TrainerDTO(
                 trainer.getId(),

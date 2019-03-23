@@ -1,5 +1,6 @@
 package com.daniel.competitions.controller;
 
+import com.daniel.competitions.dto.TrainerDTO;
 import com.daniel.competitions.entity.Trainer;
 import com.daniel.competitions.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,10 @@ public class TrainerController {
     }
 
     @GetMapping("/all")
-    public List<Trainer> findAll() {
+    public List<TrainerDTO> findAll() {
         return trainerService.findAll();
     }
+
+
+
 }
