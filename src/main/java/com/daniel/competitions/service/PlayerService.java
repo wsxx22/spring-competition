@@ -1,5 +1,6 @@
 package com.daniel.competitions.service;
 
+import com.daniel.competitions.dto.CreatePlayerDTO;
 import com.daniel.competitions.dto.PlayerDTO;
 import com.daniel.competitions.entity.Player;
 import com.daniel.competitions.repository.PlayerRepository;
@@ -22,6 +23,19 @@ public class PlayerService {
     public List<Player> findAll() {
         return playerRepository.findAll();
     }
+
+    public Player findById(Long id) {
+        return playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Nie ma takiego gracza w tej druzynie."));
+    }
+
+    public void deletePlayerById(Long id) {
+        playerRepository.deleteById(id);
+    }
+
+    public Player addPlayer(Player newPlayerDTO) {
+        return playerRepository.save(newPlayerDTO);
+    }
+
 
 //    private PlayerDTO convertToDTO(Player player) {
 //        return new PlayerDTO(

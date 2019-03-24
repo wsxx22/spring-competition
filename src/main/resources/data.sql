@@ -21,7 +21,7 @@ insert into team (id, name, total_points, trainer_id) values (4, 'Okuneva, Strei
 insert into team (id, name, total_points, trainer_id) values (5, 'Bartoletti, Jones and Friesen', 356, 10);
 insert into team (id, name, total_points, trainer_id) values (6, 'Rutherford, Hettinger and Botsford', 227, 8);
 insert into team (id, name, total_points, trainer_id) values (7, 'Farrell and Sons', 253, 12);
-insert into team (id, name, total_points, trainer_id) values (8, 'Gutkowski LLC', 295, 15);
+insert into team (id, name, total_points, trainer_id) values (8, 'Gutkowski', 295, 15);
 insert into team (id, name, total_points, trainer_id) values (9, 'West and Sons', 202, 9);
 insert into team (id, name, total_points, trainer_id) values (10, 'Paucek and Sons', 296, 1);
 

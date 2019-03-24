@@ -21,4 +21,10 @@ public class Player extends AbstractEntity {
     @JoinColumn(name = "team_id")
     private Team team;
 
+    public Player(String name, String surname, String pesel, int age) {
+        this.name = name;
+        this.surname = surname;
+        this.pesel = pesel;
+        this.age = age;
+    }
 }

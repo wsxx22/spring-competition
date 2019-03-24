@@ -32,6 +32,10 @@ public class TeamService {
         return teamRepository.save(team);
     }
 
+    public Team findById (Long id) {
+        return teamRepository.findById(id).orElseThrow(() -> new RuntimeException("Nie ma takiej druzyny"));
+    }
+
     public Team save(Team team) {
         return teamRepository.save(team);
     }

@@ -1,21 +1,59 @@
 package com.daniel.competitions.mapper;
 
+import com.daniel.competitions.dto.CreatePlayerDTO;
 import com.daniel.competitions.dto.PlayerDTO;
 import com.daniel.competitions.entity.Player;
+import com.daniel.competitions.entity.Team;
+import com.daniel.competitions.service.TeamService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Mapper (componentModel = "spring")
-public interface PlayerMapper {
+public abstract class PlayerMapper {
+
+    @Autowired
+    protected TeamService teamService;
+
+//    CreatePlayerDTO createPlayerDTO;
+//
+//    @Autowired
+//    public PlayerMapper(TeamService teamService, CreatePlayerDTO createPlayerDTO) {
+//        this.teamService = teamService;
+//        this.createPlayerDTO = createPlayerDTO;
+//    }
 
     @Mappings({
         @Mapping(target = "teamId", source = "team.id")
     })
-    PlayerDTO toDTO (Player player);
+    public abstract PlayerDTO toDTO (Player player);
 
-    List<PlayerDTO> toDTOList (List<Player> players);
+    public abstract List<PlayerDTO> toDTOList (List<Player> players);
+
+    @Mappings({
+            @Mapping(target = "teamId", source = "team.id")
+    })
+    public abstract CreatePlayerDTO toCreatePlayerDTO (Player player);
+
+    @Mapping(target = "team", expression = "java(teamService.findById(createPlayerDTO.getTeamId()))")
+//    @Mapping(target = "team", expression = "java(checkTeamId(createPlayerDTO))")
+    public abstract Player createPlayerDTOToEntity (CreatePlayerDTO createPlayerDTO);
+
+//    private Player checkTeamId (CreatePlayerDTO createPlayerDTO) {
+//        if ( (teamService.findById(createPlayerDTO.getTeamId())) == null ) {
+//            return new Player(createPlayerDTO.getName(), createPlayerDTO.getSurname(), createPlayerDTO.getPesel(), createPlayerDTO.getAge());
+//        } else {
+//            return new Player(
+//                    createPlayerDTO.getName(),
+//                    createPlayerDTO.getSurname(),
+//                    createPlayerDTO.getPesel(),
+//                    createPlayerDTO.getAge(),
+//                    ( teamService.findById( createPlayerDTO.getTeamId() ) )
+//            );
+//        }
+//    }
 
 }

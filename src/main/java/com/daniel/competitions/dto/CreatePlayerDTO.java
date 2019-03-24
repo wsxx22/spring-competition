@@ -1,16 +1,20 @@
 package com.daniel.competitions.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class PlayerDTO {
+@NoArgsConstructor
+public class CreatePlayerDTO {
 
     private Long id;
     private String name;
     private String surname;
+    private String pesel;
     private int age;
     private Long teamId;
 }

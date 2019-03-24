@@ -1,5 +1,6 @@
 package com.daniel.competitions.controller;
 
+import com.daniel.competitions.dto.CreatePlayerDTO;
 import com.daniel.competitions.dto.PlayerDTO;
 import com.daniel.competitions.mapper.PlayerMapper;
 import com.daniel.competitions.service.PlayerService;
@@ -26,11 +27,17 @@ public class PlayerController {
         return playerMapper.toDTOList(playerService.findAll());
     }
 
-//    @PostMapping("/add")
-//    public PlayerDTO addPlayer (@RequestBody PlayerDTO playerDTO, @) {
-//        String asd =
-//        return playerService.addPlayer(playerDTO);
-//    }
+    @DeleteMapping("/delete/{id}")
+    public void deletePlayerById (@PathVariable Long id) {
+        playerService.deletePlayerById(id);
+    }
+
+
+
+    @PostMapping("/add")
+    public CreatePlayerDTO addPlayer (@RequestBody CreatePlayerDTO newPlayerDTO) {
+        return playerMapper.toCreatePlayerDTO(playerService.addPlayer(playerMapper.createPlayerDTOToEntity(newPlayerDTO)));
+    }
 
 
 
