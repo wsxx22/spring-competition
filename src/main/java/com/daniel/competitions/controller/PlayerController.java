@@ -33,13 +33,16 @@ public class PlayerController {
     }
 
 
-
     @PostMapping("/add")
     public CreatePlayerDTO addPlayer (@RequestBody CreatePlayerDTO newPlayerDTO) {
         return playerMapper.toCreatePlayerDTO(playerService.addPlayer(playerMapper.createPlayerDTOToEntity(newPlayerDTO)));
     }
 
+    @PutMapping("/update/{id}")
+    public PlayerDTO update (@PathVariable Long id, @RequestBody PlayerDTO playerDTO) {
+        return playerMapper.toDTO(playerService.update(id, playerDTO));
 
+    }
 
 
 }

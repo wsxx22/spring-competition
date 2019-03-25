@@ -14,10 +14,12 @@ import java.util.stream.Collectors;
 public class PlayerService {
 
     private PlayerRepository playerRepository;
+    private TeamService teamService;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository) {
+    public PlayerService(PlayerRepository playerRepository, TeamService teamService) {
         this.playerRepository = playerRepository;
+        this.teamService = teamService;
     }
 
     public List<Player> findAll() {
@@ -25,7 +27,7 @@ public class PlayerService {
     }
 
     public Player findById(Long id) {
-        return playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Nie ma takiego gracza w tej druzynie."));
+        return playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Nie ma takiego gracza."));
     }
 
     public void deletePlayerById(Long id) {
@@ -33,8 +35,27 @@ public class PlayerService {
     }
 
     public Player addPlayer(Player newPlayerDTO) {
+
+        if (newPlayerDT)
+
         return playerRepository.save(newPlayerDTO);
     }
+
+    public Player update(Long id, PlayerDTO playerDTO) {
+        Player player = findById(id);
+
+        player.setName(playerDTO.getName());
+        player.setSurname(playerDTO.getSurname());
+        if (playerDTO.getTeamId() != null){
+            player.setTeam(teamService.findById(playerDTO.getTeamId()));
+        } else {
+            player.setTeam(null);
+        }
+
+        return playerRepository.save(player);
+    }
+
+
 
 
 //    private PlayerDTO convertToDTO(Player player) {
