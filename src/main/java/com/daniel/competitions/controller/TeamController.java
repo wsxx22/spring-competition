@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/team")
+@RequestMapping("/teams")
 public class TeamController {
 
     private TeamService teamService;
@@ -46,7 +46,7 @@ public class TeamController {
 
     @GetMapping("/{name}/all")
     public List<PlayerDTO> findPlayersByTeamName (@PathVariable String name) {
-        return playerMapper.toDTOList(playerService.findAll()
+        return playerMapper.toDTO(playerService.findAll()
                 .stream()
                 .filter(player -> player.getTeam().getName().equals(name))
                 .collect(Collectors.toList()));

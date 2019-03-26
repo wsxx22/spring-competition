@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/competition")
+@RequestMapping("/competitions")
 public class CompetitionController {
 
     private CompetitionService competitionService;

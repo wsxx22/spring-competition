@@ -4,7 +4,10 @@ import com.daniel.competitions.dto.CreatePlayerDTO;
 import com.daniel.competitions.dto.PlayerDTO;
 import com.daniel.competitions.entity.Player;
 import com.daniel.competitions.repository.PlayerRepository;
+import com.daniel.competitions.specification.PlayerSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +25,10 @@ public class PlayerService {
         this.teamService = teamService;
     }
 
+    public Page<Player> findAll(PlayerSpecification playerSpecification, Pageable pageable) {
+        return playerRepository.findAll(playerSpecification, pageable);
+    }
+
     public List<Player> findAll() {
         return playerRepository.findAll();
     }
@@ -34,18 +41,17 @@ public class PlayerService {
         playerRepository.deleteById(id);
     }
 
-    public Player addPlayer(Player newPlayerDTO) {
-
-        if (newPlayerDT)
-
-        return playerRepository.save(newPlayerDTO);
+    public Player addPlayer(Player player) {
+        return playerRepository.save(player);
     }
 
     public Player update(Long id, PlayerDTO playerDTO) {
         Player player = findById(id);
 
         player.setName(playerDTO.getName());
+
         player.setSurname(playerDTO.getSurname());
+
         if (playerDTO.getTeamId() != null){
             player.setTeam(teamService.findById(playerDTO.getTeamId()));
         } else {

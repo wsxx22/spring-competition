@@ -31,16 +31,31 @@ public abstract class PlayerMapper {
     })
     public abstract PlayerDTO toDTO (Player player);
 
-    public abstract List<PlayerDTO> toDTOList (List<Player> players);
+    public abstract List<PlayerDTO> toDTO(List<Player> players);
 
     @Mappings({
             @Mapping(target = "teamId", source = "team.id")
     })
     public abstract CreatePlayerDTO toCreatePlayerDTO (Player player);
 
-    @Mapping(target = "team", expression = "java(teamService.findById(createPlayerDTO.getTeamId()))")
-//    @Mapping(target = "team", expression = "java(checkTeamId(createPlayerDTO))")
-    public abstract Player createPlayerDTOToEntity (CreatePlayerDTO createPlayerDTO);
+    public Player createPlayerDTOToEntity(CreatePlayerDTO createPlayerDTO) {
+        if ( createPlayerDTO == null ) {
+            return null;
+        }
+
+        Player player = new Player();
+
+        player.setName( createPlayerDTO.getName() );
+        player.setSurname( createPlayerDTO.getSurname() );
+        player.setPesel( createPlayerDTO.getPesel() );
+        player.setAge( createPlayerDTO.getAge() );
+
+        if (createPlayerDTO.getTeamId() != null) {
+            player.setTeam( teamService.findById(createPlayerDTO.getTeamId()) );
+        }
+
+        return player;
+    }
 
 //    private Player checkTeamId (CreatePlayerDTO createPlayerDTO) {
 //        if ( (teamService.findById(createPlayerDTO.getTeamId())) == null ) {

@@ -4,13 +4,17 @@ import com.daniel.competitions.dto.CreatePlayerDTO;
 import com.daniel.competitions.dto.PlayerDTO;
 import com.daniel.competitions.mapper.PlayerMapper;
 import com.daniel.competitions.service.PlayerService;
+import com.daniel.competitions.specification.PlayerSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/player")
+@RequestMapping("/players")
 public class PlayerController {
 
     private PlayerService playerService;
@@ -22,21 +26,24 @@ public class PlayerController {
         this.playerMapper = playerMapper;
     }
 
-    @GetMapping("/all")
-    public List<PlayerDTO> findAll() {
-        return playerMapper.toDTOList(playerService.findAll());
+    @GetMapping
+    public List<PlayerDTO> findAll(PlayerSpecification playerSpecification,
+                                   @PageableDefault(size = 20) Pageable pageable) {
+        return playerMapper.toDTO(playerService.findAll(playerSpecification, pageable).getContent());
     }
 
-    @DeleteMapping("/delete/{id}")
+    @PostMapping
+    public CreatePlayerDTO addPlayer (@Valid @RequestBody CreatePlayerDTO newPlayerDTO) {
+        return playerMapper.toCreatePlayerDTO(playerService.addPlayer(playerMapper.createPlayerDTOToEntity(newPlayerDTO)));
+    }
+
+    @DeleteMapping("/{id}")
     public void deletePlayerById (@PathVariable Long id) {
         playerService.deletePlayerById(id);
     }
 
 
-    @PostMapping("/add")
-    public CreatePlayerDTO addPlayer (@RequestBody CreatePlayerDTO newPlayerDTO) {
-        return playerMapper.toCreatePlayerDTO(playerService.addPlayer(playerMapper.createPlayerDTOToEntity(newPlayerDTO)));
-    }
+
 
     @PutMapping("/update/{id}")
     public PlayerDTO update (@PathVariable Long id, @RequestBody PlayerDTO playerDTO) {
