@@ -42,13 +42,9 @@ public class PlayerController {
         playerService.deletePlayerById(id);
     }
 
-
-
-
     @PutMapping("/update/{id}")
     public PlayerDTO update (@PathVariable Long id, @RequestBody PlayerDTO playerDTO) {
         return playerMapper.toDTO(playerService.update(id, playerDTO));
-
     }
 
 

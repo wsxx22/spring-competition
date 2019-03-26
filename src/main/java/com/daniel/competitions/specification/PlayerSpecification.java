@@ -14,4 +14,5 @@ import org.springframework.data.jpa.domain.Specification;
         @Spec(path = "age", params = { "age_max" }, spec = LessThanOrEqual.class)
 })
 public interface PlayerSpecification extends Specification<Player> {
+
 }
