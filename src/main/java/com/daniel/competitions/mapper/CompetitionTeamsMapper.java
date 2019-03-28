@@ -2,13 +2,11 @@ package com.daniel.competitions.mapper;
 
 import com.daniel.competitions.dto.CompetitionTeamsDTO;
 import com.daniel.competitions.entity.CompetitionTeams;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper
+@Mapper (componentModel = "spring",uses = {CompetitionMapper.class}, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface CompetitionTeamsMapper {
 
     @Mappings({

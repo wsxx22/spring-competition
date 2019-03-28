@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompetitonDTO {
+public class CompetitionDTO {
 
     private Long id;
     private Long categoryId;
