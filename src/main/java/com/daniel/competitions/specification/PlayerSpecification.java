@@ -11,7 +11,8 @@ import org.springframework.data.jpa.domain.Specification;
         @Spec(path="surname", spec= Equal.class),
         //@Spec(path = "age", spec = Equal.class)
         @Spec(path = "age", params = { "age_min" }, spec = GreaterThanOrEqual.class),
-        @Spec(path = "age", params = { "age_max" }, spec = LessThanOrEqual.class)
+        @Spec(path = "age", params = { "age_max" }, spec = LessThanOrEqual.class),
+        @Spec(path = "team.id", params = "team_id", spec = In.class)
 })
 public interface PlayerSpecification extends Specification<Player> {
 

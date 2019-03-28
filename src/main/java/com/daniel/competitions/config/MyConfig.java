@@ -10,8 +10,8 @@ import java.util.List;
 @Configuration
 public class MyConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new SpecificationArgumentResolver());
-    }
+   @Override
+   public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+       resolvers.add(new SpecificationArgumentResolver());
+   }
 }

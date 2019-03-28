@@ -2,11 +2,16 @@ package com.daniel.competitions.controller;
 
 import com.daniel.competitions.dto.PlayerDTO;
 import com.daniel.competitions.dto.TeamDTO;
+import com.daniel.competitions.entity.Team;
 import com.daniel.competitions.mapper.PlayerMapper;
 import com.daniel.competitions.mapper.TeamMapper;
 import com.daniel.competitions.service.PlayerService;
 import com.daniel.competitions.service.TeamService;
+import com.daniel.competitions.specification.TeamSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,9 +34,14 @@ public class TeamController {
         this.playerMapper = playerMapper;
     }
 
+//    @GetMapping("/all")
+//    public List<TeamDTO> findAll() {
+//        return teamMapper.toDTOList(teamService.findAll());
+//    }
+
     @GetMapping("/all")
-    public List<TeamDTO> findAll() {
-        return teamMapper.toDTOList(teamService.findAll());
+    public List<TeamDTO> findAll(TeamSpecification teamSpecification, @PageableDefault(size = 5) Pageable  pageable) {
+        return teamMapper.toDTOList(teamService.findAll(teamSpecification, pageable).getContent());
     }
 
     @PatchMapping("/{id}")
