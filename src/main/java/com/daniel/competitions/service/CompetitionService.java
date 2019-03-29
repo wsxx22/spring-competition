@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,10 +33,6 @@ public class CompetitionService {
         this.competitionMapper = competitionMapper;
     }
 
-    public List<Competition> findAll0() {
-        return competitionRepository.findAll();
-    }
-
     public Page<Competition> findAll(CompetitionSpecification competitionSpecification, Pageable pageable) {
         return competitionRepository.findAll(competitionSpecification, pageable);
     }
@@ -44,7 +41,6 @@ public class CompetitionService {
         return competitionRepository.findById(id).orElseThrow(() -> new RuntimeException("Nie ma zawodów takim ID"));
     }
 
-    public Page<CompetitionTeams> findAll ()
 
 //    public List<Competition> findByDate (LocalDate date) {
 //        return competitionRepository.findByDateLike(date);

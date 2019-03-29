@@ -13,6 +13,7 @@ public interface CompetitionTeamsMapper {
             @Mapping(target = "competitionId", source = "competition.id"),
             @Mapping(target = "teamId", source = "team.id")
     })
+    
     CompetitionTeamsDTO toDTO (CompetitionTeams competitionTeams);
 
     List<CompetitionTeams> toDTO (List<CompetitionTeams> competitionTeamsList);

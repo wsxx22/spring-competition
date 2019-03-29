@@ -12,6 +12,9 @@ import lombok.Setter;
 public class CompetitionTeamsDTO {
 
     private Long competitionId;
+
+//    private TeamDTO team; TODO
+
     private Long teamId;
     private int points;
 

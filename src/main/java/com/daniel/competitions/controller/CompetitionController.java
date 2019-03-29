@@ -1,6 +1,7 @@
 package com.daniel.competitions.controller;
 
-import com.daniel.competitions.entity.Competition;
+import com.daniel.competitions.dto.CompetitionDTO;
+import com.daniel.competitions.mapper.CompetitionMapper;
 import com.daniel.competitions.service.CompetitionService;
 import com.daniel.competitions.specification.CompetitionSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +18,18 @@ import java.util.List;
 public class CompetitionController {
 
     private CompetitionService competitionService;
+    private CompetitionMapper competitionMapper;
 
     @Autowired
-    public CompetitionController(CompetitionService competitionService) {
+    public CompetitionController(CompetitionService competitionService, CompetitionMapper competitionMapper) {
         this.competitionService = competitionService;
+        this.competitionMapper = competitionMapper;
     }
 
     @GetMapping("/all")
-    public List<Competition> findAll(CompetitionSpecification competitionSpecification,
-                                     @PageableDefault(size = 5) Pageable pageable) {
-        return competitionService.findAll(competitionSpecification, pageable).getContent();
+    public List<CompetitionDTO> findAll(CompetitionSpecification competitionSpecification,
+                                        @PageableDefault(size = 5) Pageable pageable) {
+        return competitionMapper.toDTOList(competitionService.findAll(competitionSpecification, pageable).getContent());
     }
 
 

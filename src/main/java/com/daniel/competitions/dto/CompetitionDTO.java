@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,5 +19,5 @@ public class CompetitionDTO {
     private Long addressId;
     private LocalDate date;
 
-
+    private List<CompetitionTeamsDTO> competitionTeams;
 }
